@@ -4,7 +4,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <h1>Currency convert App</h1>
+      <h1>Currency Convert Today</h1>
     </div>
   );
 }
