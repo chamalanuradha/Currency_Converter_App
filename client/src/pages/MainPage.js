@@ -1,6 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const MainPage = () => {
+
+    const [date, setDate] = useState('');
+    const [sourceCurrency, setSourseCurrency] = useState('');
+    const [targetCurrency, setTargetCurrency] = useState('');
+    const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0);
+    const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
+
   return (
     <div>
       <h1 className='lg:mx-32  text-5xl font-bold text-green-600'>Currency Convert Today</h1>
@@ -15,18 +22,18 @@ const MainPage = () => {
             <input type="date" id="date" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"   required />
         </div>
         <div>
-            <label for="Source Currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Source Currency </label>
-           <select  id="" class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Source Currency </label>
+           <select  id="" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
             <option value="" >Select Source Currency</option>
            </select>
         </div><div>
-            <label for="Target Currency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target Currency</label>
-            <select  id="" class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+            <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target Currency</label>
+            <select  id="" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
             <option value="" >Select Target currency</option>
            </select>
         </div><div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount In Source Currency</label>
-            <input type="text" id="first_name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Amount in source currency....."  required />
+            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount In Source Currency</label>
+            <input type="number" id="first_name" className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Amount in source currency....."  required />
         </div>
         
   
