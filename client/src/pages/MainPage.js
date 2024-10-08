@@ -8,13 +8,22 @@ const MainPage = () => {
     const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0);
     const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(
+            date,
+            sourceCurrency,
+            targetCurrency,
+            amountInSourceCurrency,
+        )
+    }
   return (
     <div>
       <h1 className='lg:mx-32  text-5xl font-bold text-green-600'>Currency Convert Today</h1>
       <p className='lg:mx-32 opacity-40 py-16 text-justify'>"Currency Convert Today" could be a service or tool designed to provide real-time exchange rate conversions for various currencies. It allows users to quickly check the value of one currency in relation to another, making it easier for individuals and businesses to manage international transactions, travel expenses, or investments. By offering up-to-date rates, "Currency Convert Today" ensures accurate conversions based on current market conditions, giving users a reliable resource for financial planning and decision-making in a global economy.</p>
       <div className='mt-5 flex items-center justify-center flex-col'>
       <section className='w-full lg:w-1/2'> 
-<form>
+<form onSubmit={handleSubmit}>
         <div className="mb-4">
         <div>
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
