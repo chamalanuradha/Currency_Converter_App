@@ -1,12 +1,16 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 const MainPage = () => {
 
     const [date, setDate] = useState('');
-    const [sourceCurrency, setSourseCurrency] = useState('');
+    const [sourceCurrency, setSourceCurrency] = useState('');
     const [targetCurrency, setTargetCurrency] = useState('');
     const [amountInSourceCurrency, setAmountInSourceCurrency] = useState(0);
     const [amountInTargetCurrency, setAmountInTargetCurrency] = useState(0);
+    const [currencies, setCurrencies] = useState([]);
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,6 +21,22 @@ const MainPage = () => {
             amountInSourceCurrency,
         )
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/getCurrencies');
+                setCurrencies(response.data); 
+            } catch (err) {
+                console.error(err); 
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+
   return (
     <div>
       <h1 className='lg:mx-32  text-5xl font-bold text-green-600'>Currency Convert Today</h1>
@@ -36,16 +56,22 @@ const MainPage = () => {
             />
         </div>
         <div>
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Source Currency</label>
-           <select  
-           name={sourceCurrency}
-           id={sourceCurrency}
-           className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-           onChange={(e)=>setSourseCurrency(e.target.value)}
-           >
-            <option value="">Select Source Currency</option>
-           </select>
-        </div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Source Currency</label>
+    <select  
+        name={sourceCurrency}
+        id={sourceCurrency}
+        className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+        onChange={(e)=>setSourceCurrency(e.target.value)}
+    >
+        <option value="">Select Source Currency</option>
+                        {Object.keys(currencies).map((currency) => (
+                  <option className=" p-1" key={currency} value={currency}>
+                    {currencies[currency]}
+                  </option>
+                ))}
+
+    </select>
+</div>
         <div>
             <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target Currency</label>
             <select  
@@ -55,6 +81,11 @@ const MainPage = () => {
             onChange={(e)=>setTargetCurrency(e.target.value)}
             >
             <option value="">Select Target Currency</option>
+                        {Object.keys(currencies).map((currency) => (
+                  <option className=" p-1" key={currency} value={currency}>
+                    {currencies[currency]}
+                  </option>
+                ))}
            </select>
         </div>
         <div>
